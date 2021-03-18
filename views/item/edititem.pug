@@ -1,0 +1,92 @@
+extends ../layout/admin_layout.pug
+
+block body
+    #page-wrapper
+        #title-breadcrumb-option-demo.page-title-breadcrumb
+            .page-header.pull-left
+                .page-title Item
+            ol.breadcrumb.page-breadcrumb
+                li
+                    i.fa.fa-home
+                        a(href="#") Home&nbsp;&nbsp;
+                    i.fa.fa-angle-right &nbsp;&nbsp;
+                li
+                    a(href="#") Item&nbsp;&nbsp;
+                        i.fa.fa-angle-right &nbsp;&nbsp;
+                li.active Edit Brands
+        .page-content
+            if(successmessage)
+                .note.note-success
+                    h4.box-heading SUCCESS
+                    P Item Created Successfully
+            if(errormessage)
+                .note.note-danger
+                    h4.box-heading ERROR
+                    P #{errormessage}
+            .row
+                .col-lg-12
+                    .panel.panel-danger
+                        .panel-heading Item
+                        .panel-body.pan
+                            form(action="/item/updateitem", method="post",  enctype="multipart/form-data").form-horizontal
+                                .form-body.pal
+                                    .form-group
+                                        label(for="itemName").col-md-3.control-label Item Name
+                                            span.require *
+                                        .col-md-9
+                                            input#item_id(type="hidden" , name="item_id" , value=item._id)
+                                            input#itemName(type="text", name="itemName",placeholder="Item Name" ,value=item.itemName, required="").form-control
+                                    .form-group
+                                        label(for="description").col-md-3.control-label Description
+                                            span.require *
+                                        .col-md-9
+                                            input#description(type="text", name="description",placeholder="Item Description", value=item.description, , required="").form-control
+                                    .form-group
+                                        label(for="price").col-md-3.control-label Price
+                                            span.require *
+                                        .col-md-9
+                                            input#price(type="text", name="price",placeholder="Price", value=item.price, , required="").form-control
+                                    .form-group
+                                        label(for="moq").col-md-3.control-label Min. Order Quantity
+                                            span.require *
+                                        .col-md-9
+                                            input#moq(type="text", name="moq",placeholder="Min. Order Quantity", value=item.moq, , required="").form-control
+                                    .form-group
+                                        label(for="unit").col-md-3.control-label Unit
+                                            span.require *
+                                        .col-md-9
+                                            input#unit(type="text", name="unit",placeholder="Unit", value=item.unit, , required="").form-control
+                                    .form-group
+                                        label(for="image").col-md-3.control-label Image
+                                            span.require *
+                                        .col-md-9
+                                            input#image(type="file", name="image",value=item.image, ).form-control
+                                            image(src="/"+item.image , style={height :'50px' , width:'100px'})
+                                    .form-group
+                                        label(for="brand").col-md-3.control-label Brand
+                                            span.require *
+                                        .col-md-9
+                                            select#brand(name="brand").select2-size.form-control
+                                                option(value="0") Brand
+                                                each brand in brands
+                                                    if(item.brand == item._id)
+                                                        option(value=item._id, selected=true) #{item.brand}
+                                                    else
+                                                        option(value=item._id) #{item.brand}
+                                    .form-group
+                                        label(for="category").col-md-3.control-label Category
+                                            span.require *
+                                        .col-md-9
+                                            select#category(name="category").select2-size.form-control
+                                                option(value="0") Category
+                                                each category in categorys
+                                                    if(item.category == item._id)
+                                                        option(value=item._id, selected=true) #{item.category}
+                                                    else
+                                                        option(value=item._id) #{item.category}
+                                    
+                                    .form-actions
+                                        .col-md-offset-3.col-md-9
+                                            button(type="submit").btn.btn-primary Update
+                                            |&nbsp;                                            
+                                            button(type="reset").btn.btn-green Reset                                

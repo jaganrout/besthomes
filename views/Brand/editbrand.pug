@@ -1,0 +1,57 @@
+extends ../layout/admin_layout.pug
+
+block body
+    #page-wrapper
+        #title-breadcrumb-option-demo.page-title-breadcrumb
+            .page-header.pull-left
+                .page-title Brand
+            ol.breadcrumb.page-breadcrumb
+                li
+                    i.fa.fa-home
+                        a(href="#") Home&nbsp;&nbsp;
+                    i.fa.fa-angle-right &nbsp;&nbsp;
+                li
+                    a(href="#") Brand&nbsp;&nbsp;
+                        i.fa.fa-angle-right &nbsp;&nbsp;
+                li.active Edit Brands
+        .page-content
+            if(successmessage)
+                .note.note-success
+                    h4.box-heading SUCCESS
+                    P Brand Created Successfully
+            if(errormessage)
+                .note.note-danger
+                    h4.box-heading ERROR
+                    P #{errormessage}
+            .row
+                .col-lg-12
+                    .panel.panel-danger
+                        .panel-heading Brand
+                        .panel-body.pan
+                            form(action="/brand/updatebrand", method="post",  enctype="multipart/form-data").form-horizontal
+                                .form-body.pal
+                                    .form-group
+                                        label(for="brandname").col-md-3.control-label Brand Name
+                                            span.require *
+                                        .col-md-9
+                                            input#brand_id(type="hidden" , name="brand_id" , value=brand._id)
+                                            input#brandName(type="text", name="brandName",placeholder="Brand Name" ,value=brand.brandName, required="").form-control
+                                    .form-group
+                                        label(for="icon").col-md-3.control-label icon
+                                            span.require *
+                                        .col-md-9
+                                            input#icon(type="file", name="icon",value=brand.icon, ).form-control
+                                            image(src="/"+brand.icon , style={height :'50px' , width:'100px'})
+                                    .form-group
+                                        label(for="isauthorised").col-md-3.control-label isAuthorised
+                                            span.require *
+                                        .col-md-9
+                                            select#isauthorised(name="isauthorised").form-control
+                                                option(value="true") Yes
+                                                option(value="false") No
+                                    
+                                    .form-actions
+                                        .col-md-offset-3.col-md-9
+                                            button(type="submit").btn.btn-primary Update
+                                            |&nbsp;                                            
+                                            button(type="reset").btn.btn-green Reset                                

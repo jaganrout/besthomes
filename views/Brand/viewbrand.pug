@@ -1,0 +1,44 @@
+extends ../layout/admin_layout.pug
+
+block body
+    #page-wrapper
+        #title-breadcrumb-option-demo.page-title-breadcrumb
+            .page-header.pull-left
+                .page-title Brand
+            ol.breadcrumb.page-breadcrumb
+                li
+                    i.fa.fa-home
+                        a(href="#") Home&nbsp;&nbsp;
+                    i.fa.fa-angle-right &nbsp;&nbsp;
+                li
+                    a(href="#") Brands&nbsp;&nbsp;
+                        i.fa.fa-angle-right &nbsp;&nbsp;
+                li.active View Brands
+        .page-content
+            if(successmessage)
+                .note.note-success
+                    h4.box-heading SUCCESS
+                    P #{successmessage}
+            if(errormessage)
+                .note.note-danger
+                    h4.box-heading ERROR
+                    P #{errormessage}
+            .row
+                .col-lg-12
+                    table.table.table-hover.table-bordered
+                        thead
+                            tr
+                                th BrandName
+                                th icon
+                                th isauthorised
+                        tbody
+                            each brands  in brand
+                                tr
+                                    td #{brands.brandName}
+                                    td
+                                        img(src="/"+brands.icon, alt="",style={height :'50px' , width:'100px'})
+                                    td #{brands.isauthorised}
+                                    td
+                                        a(href="/brand/editbrand/" + brands._id) Edit
+                                        | &nbsp;&nbsp;
+                                        a(href="/brand/deletebrand/" + brands._id , onclick="return confirm('Are you sure?')") Delete

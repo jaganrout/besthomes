@@ -1,0 +1,58 @@
+extends ../layout/admin_layout.pug
+
+block body
+    #page-wrapper
+        #title-breadcrumb-option-demo.page-title-breadcrumb
+            .page-header.pull-left
+                .page-title Categories
+            ol.breadcrumb.page-breadcrumb
+                li
+                    i.fa.fa-home
+                        a(href="#") Home&nbsp;&nbsp;
+                    i.fa.fa-angle-right &nbsp;&nbsp;
+                li
+                    a(href="#") Item&nbsp;&nbsp;
+                        i.fa.fa-angle-right &nbsp;&nbsp;
+                li.active Items
+        .page-content
+            if(successmessage)
+                .note.note-success
+                    h4.box-heading SUCCESS
+                    P #{successmessage}
+            if(errormessage)
+                .note.note-danger
+                    h4.box-heading ERROR
+                    P #{errormessage}
+            .row
+                .col-lg-12
+                    table.table.table-hover.table-bordered#mytable
+                        thead
+                            tr
+                                th Item Name
+                                th Description
+                                th Price
+                                th Min. Order Quantity
+                                th Unit
+                                th Image
+                                th Brand
+                                th Category
+                        tbody
+                            each item in items
+                                tr
+                                    td #{item.itemName}
+                                    td #{item.description}
+                                    td #{item.price}
+                                    td #{item.moq}
+                                    td #{item.unit}
+                                    td
+                                        img(src="/"+item.image, alt="",style={height :'50px' , width:'100px'})
+                                    td #{item.brand}
+                                    td #{item.category}
+                                    td
+                                        a(href="/item/edititem/" + item._id)
+                                        | &nbsp;&nbsp;
+                                        a(href="/item/deleteitem/" + item._id , onclick="return confirm('Are you sure?')") Delete
+                    script.
+                        $(document).ready( function () {
+                            $('#mytable').DataTable();
+                        });

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title Admin Login
+        link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400,700,800")
+        link(rel="stylesheet", href="http://fonts.googleapis.com/css?family=Oswald:400,700,300")
+        link(rel="stylesheet", href="/admin/vendors/jquery-ui-1.10.3.custom/css/ui-lightness/jquery-ui-1.10.3.custom.css")
+        link(rel="stylesheet", href="/admin/vendors/font-awesome/css/font-awesome.min.css")
+        link(rel="stylesheet", href="/admin/vendors/bootstrap/css/bootstrap.min.css")
+        link(rel="stylesheet", href="/admin/vendors/animate.css/animate.css")
+        link(rel="stylesheet", href="/admin/vendors/iCheck/skins/all.css")
+        link(rel="stylesheet", href="/admin/css/themes/style1/pink-blue.css")
+        link(rel="stylesheet", href="/admin/css/themes/style1/pink-blue.css")
+        link(rel="stylesheet", href="/admin/css/style-responsive.css")
+    body#signin-page
+        .page-form
+            form(action="/admin/createuser", method="post").form
+                .header-content
+                    img(src="/images/logo.png", alt="", srcset="")
+                    h1 SIGN UP
+                .body-content
+                    .form-group
+                        .input-icon.right
+                            i.fa.fa-user
+                            input#name.form-control(type="text", name="name",placeholder="Name")
+                    .form-group
+                        .input-icon.right
+                            i.fa.fa-user
+                            input#emailid.form-control(type="text", name="emailid",placeholder="Emailid")
+                    .form-group
+                        .input-icon.right
+                            i.fa.fa-user
+                            input#contactno.form-control(type="text", name="contactno",placeholder="ContactNo")
+                    .form-group
+                        .input-icon.right
+                            i.fa.fa-key
+                            input#password.form-control(type="password", name="password",placeholder="password")
+                    .form-group.pull-left
+                        .checkbox-list
+                            label
+                                input#checkbox(type="checkbox", name="checkbox")
+                                |Keep me signed in
+                    .form-group.pull-right
+                        button(type="submit").btn.btn-success
+                            i.fa.fa-chevron-circle-right Sign Up
+                    .clearfix
+                            
+

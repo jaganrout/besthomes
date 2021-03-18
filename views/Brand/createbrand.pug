@@ -1,0 +1,60 @@
+extends ../layout/admin_layout.pug
+block body
+    #page-wrapper
+        #title-breadcrumb-option-demo.page-title-breadcrumb
+            .page-header.pull-left
+                .page-title Brand
+            ol.breadcrumb.page-breadcrumb
+                li
+                    i.fa.fa-home
+                        a(href="#") Home&nbsp;&nbsp;
+                    i.fa.fa-angle-right &nbsp;&nbsp;
+                li
+                    a(href="#") Brands&nbsp;&nbsp;
+                        i.fa.fa-angle-right &nbsp;&nbsp;
+                li.active Create Brand
+        .page-content
+            if(successmessage)
+                .note.note-success
+                    h4.box-heading SUCCESS
+                    P Brand Created Successfully
+            if(errormessage)
+                .note.note-danger
+                    h4.box-heading ERROR
+                    P #{errormessage}
+            .row
+                .col-lg-12
+                    .panel.panel-danger
+                        .panel-heading Brand
+                        .panel-body.pan
+                            form(action="/brand/createbrand", method="post", enctype="multipart/form-data").form-horizontal
+                                .form-body.pal
+                                    .form-group
+                                        label(for="BrandName").col-md-3.control-label Brand Name
+                                            span.require *
+                                        .col-md-9
+                                            input#name(type="text", name="BrandName",placeholder="Brand Name", required="").form-control
+                                    .form-group
+                                        label(for="icon").col-md-3.control-label Icon
+                                            span.require *
+                                        .col-md-9
+                                            input#icon(type="file", name="icon", required="").form-control
+                                    .form-group
+                                        label(for="isauthorised").col-md-3.control-label isAuthorised
+                                            span.require *
+                                        .col-md-9
+                                            select#isauthorised(name="isauthorised").form-control
+                                                option(value="true") Yes
+                                                option(value="false") No
+                                    .form-group
+                                        label(for="alias").col-md-3.control-label Category
+                                            span.require *
+                                        .col-md-9
+                                            select#category(name="category").select2-size.form-control
+                                                each category in categorys
+                                                    option(value=category._id) #{category.alias}
+                                    .form-actions
+                                        .col-md-offset-3.col-md-9
+                                            button(type="submit").btn.btn-primary Submit
+                                            |&nbsp;                                            
+                                            button(type="reset").btn.btn-green Reset
